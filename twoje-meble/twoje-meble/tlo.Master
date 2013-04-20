@@ -1,0 +1,120 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="tlo.master.cs" Inherits="komp.tlo" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link href="style/styl_1.css" rel="stylesheet" type="text/css" />
+    <title></title>
+
+        <style type="text/css">
+     
+               
+        </style>
+
+    &nbsp;&nbsp;&nbsp;
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body>
+
+    <div id=strona>
+
+      <div id=top>
+          <div id=owijacz>
+          <a href="/"> <div id=logo></div></a>
+
+             <div id=menu>    
+
+    <div runat=server id=linki_user class='linki_usera'>
+    <ul>
+    <li>Witaj,<a runat=server id=link_mojekonto href="/moje.aspx"><label runat=server id=login_usera></label></a>(<a runat=server id=A1 href="/wyloguj.aspx">Wyloguj</a>)
+       <a href="/rezerwuj">Rezerwuj</a>
+
+    </li>
+
+    </ul>
+    </div>
+      
+       <div class="menu_glowne">
+             
+        <ul>
+
+           <div runat=server id=linki_logowanie class="linki_l">
+            <li class='pierwszy'><a href="/rejestracja.aspx">Zarejestruj się</a></li><!---<li><a href="/promocje.aspx">promocje</a></li><li><a href="/produkty.aspx">produkty</a></li>--->
+          <div runat=server id=linki_admin  style='display:inline;'><li><a runat=server id=A3 href="/administracja.aspx">administracja</a></li>
+          </div>
+            <li><a href="/logowanie.aspx">Moje Konto</a></li>       
+            <li><a href="/rezerwuj">Rezerwuj</a></li>
+            <li><a href="/logowanie.aspx">Zaloguj</a></li>
+          </div>
+
+
+
+       </ul>
+    </div>
+
+
+    </div>
+
+        <div id=opcje_menu>
+               <div id=szukaj>
+              <form action=/szukaj method=get>
+     <input type="text" class="search-field input active" name="q" maxlength="200" value="">
+  <input type="submit" value="">
+  </div>
+
+              <div id=koszyk> <a runat=server id=A2 class='text_format_3' href="/koszyk.aspx">Koszyk: <label class='gruby czarny' runat=server id=label_koszyk>0</label></a></div>
+    </form>
+             
+        </div>
+          </div>
+      </div>
+  
+
+    </div>
+    
+
+    <div class='owijacz odstep_gora'>
+    
+    <ul id=elementy>
+
+                         <li>
+                         <div id=kategorie><ul><div class=kat>Kategorie</div>
+                             <asp:DataList ID="DataList1" runat="server" DataKeyField="KategoriaID" 
+                                 DataSourceID="SqlDataSource1" Width="100%">
+                                 <ItemTemplate>
+                                 <li><a href="/kategoria/<%# Eval("KategoriaID") %>" /><asp:Label ID="nazwaLabel" runat="server" Text='<%# Eval("nazwa") %>' /></a></li>
+                                 </ItemTemplate>
+                             </asp:DataList>
+                           
+                             </ul></div>
+                                     </li>
+                             <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+                                 ConnectionString="<%$ ConnectionStrings:CS %>" 
+                                 SelectCommand="SELECT * FROM [Kategoria]"></asp:SqlDataSource>
+         
+                 <li>
+            <div id=konsultant>
+            <h1>Konsultant</h1>
+            jest <span class="konsultant_off"></span>
+            <br /><br />
+            <a href='/konsultant/'><span style='font-size:14px;'>Napisz wiadomość</span><span style='color:#ff7700;font-weight:bold;'>»</span></a>
+            
+            
+            </div>
+      </li>
+    </ul>
+
+
+    <form id="form1" runat="server">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">  
+                 
+
+        </asp:ContentPlaceHolder>
+    </form>
+   </div>
+</body>
+</html>
