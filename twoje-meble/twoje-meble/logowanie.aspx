@@ -5,6 +5,7 @@
 
     <div class=zawartosc>
     <div class=formularz>
+    <label>Logowanie</label>
     <br />
 <table style="height: 0px; " align="center">
 

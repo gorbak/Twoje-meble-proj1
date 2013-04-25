@@ -63,11 +63,16 @@
     <Content Include="grafika\logo.png" />
     <Content Include="grafika\proj-grup-sprite.png" />
     <Content Include="grafika\tlo.jpg" />
+    <Content Include="grafika\tlo6.jpg" />
+    <Content Include="grafika\tlo7.bmp" />
     <Content Include="grafika\top-sprite.png" />
+    <Content Include="ilosc_znakow.js" />
     <Content Include="index.aspx" />
+    <Content Include="jquery-2.0.0.min.js" />
     <Content Include="kategoria.aspx" />
     <Content Include="konsultant.aspx" />
     <Content Include="koszyk.aspx" />
+    <Content Include="limit.js" />
     <Content Include="logo.png" />
     <Content Include="logowanie.aspx" />
     <Content Include="moje.aspx" />

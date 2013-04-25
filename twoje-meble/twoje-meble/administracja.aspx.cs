@@ -11,17 +11,97 @@ namespace komp
 {
     public partial class administracja : System.Web.UI.Page
     {
+        protected void niewidoczne_opcje()
+        {
+            uzytkownicy_admin.Visible = false;
+            produkty_admin.Visible = false;
+            magazyn_admin.Visible = false;
+        }
+        protected void opcja_wybrana(int opcja)
+        {
+
+            switch(opcja){
+                case 1:
+            niewidoczne_opcje();
+            produkty_admin.Visible = true;
+                    break;
+                case 2:
+            niewidoczne_opcje();
+            uzytkownicy_admin.Visible = true;
+                    break;
+               case 3:
+                    niewidoczne_opcje();
+                    magazyn_admin.Visible = true;
+                  break;
+
+                default:
+            niewidoczne_opcje();
+            produkty_admin.Visible = true;
+                    break;
+            }
+
+
+        }
+        protected void Sprawdz_opcje_menu_admina()
+        {
+
+            if (Page.RouteData.Values["menu_admin"] != null)
+            {
+
+                switch (int.Parse(Page.RouteData.Values["menu_admin"].ToString()))
+                {
+
+                    case 1:
+                        m_a_1.Attributes.Add("class", "label_menu_admin wybrany");
+                        opcja_wybrana(1);
+                        break;
+
+                    case 2:
+                        m_a_2.Attributes.Add("class", "label_menu_admin wybrany");
+                        opcja_wybrana(2);
+                        break;
+
+                    case 3:
+                        m_a_3.Attributes.Add("class", "label_menu_admin wybrany");
+                        opcja_wybrana(3);
+                        break;
+
+                    default:
+                        m_a_1.Attributes.Add("class", "label_menu_admin wybrany");
+                        opcja_wybrana(1);
+                        break;
+
+                }
+            }
+            else
+            {
+                m_a_1.Attributes.Add("class", "label_menu_admin wybrany");
+                opcja_wybrana(1);
+            }
+
+         
+
+
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
             if (Session.Count == 0)
             {
                 Response.Redirect("/");
             }
-            else
+            else if (Session.Count>0 && Session["uprawnienia"].ToString()!="admin")
             {
-
+                Response.Redirect("/");
 
             }
+
+
+
+            Sprawdz_opcje_menu_admina();
+            
+
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -34,30 +114,22 @@ namespace komp
                 +"produkty(nazwa, model, cena,kategoria, grupa, podgrupa, dostepnosc)"
                 +"VALUES (@nazwa, @model, @cena,@kategoria, @grupa, @podgrupa, @dostepnosc)");
 
-            SqlParameter param1, param2, param3, param4, param4_1, param5, param6;
+            SqlParameter param1, param2, param3, param4;
             param1 = new SqlParameter("nazwa", SqlDbType.VarChar);
             param2 = new SqlParameter("model", SqlDbType.VarChar);
             param3 = new SqlParameter("cena", SqlDbType.VarChar);
-            param4 = new SqlParameter("kategoria", SqlDbType.VarChar);
-            param4_1 = new SqlParameter("grupa", SqlDbType.VarChar);
-            param5 = new SqlParameter("podgrupa", SqlDbType.VarChar);
-            param6 = new SqlParameter("dostepnosc", SqlDbType.VarChar);
+            param4 = new SqlParameter("kategoria", SqlDbType.Int);
             param1.Value = TextBoxnazwa.Text;
             param2.Value = TextBoxmodel.Text;
             param3.Value = TextBoxcena.Text;
-            param4.Value = TextBoxkat.Text;
-            param4_1.Value = TextBoxgrp.Text;
-            param5.Value = TextBoxpgrp.Text;
-            param6.Value = TextBoxdost.Text;
+            param4.Value = DropDownkat.SelectedValue;
+
             String nazwa=Convert.ToString(param1.Value);
 
             prod_cmd_insert.Parameters.Add(param1);
             prod_cmd_insert.Parameters.Add(param2);
             prod_cmd_insert.Parameters.Add(param3);
             prod_cmd_insert.Parameters.Add(param4);
-            prod_cmd_insert.Parameters.Add(param4_1);
-            prod_cmd_insert.Parameters.Add(param5);
-            prod_cmd_insert.Parameters.Add(param6);
 
             prod_cmd_insert.Connection = prod_con;
             prod_cmd_insert.ExecuteNonQuery();

@@ -9,8 +9,18 @@ namespace komp
 {
     public partial class tlo : System.Web.UI.MasterPage
     {
+
+        protected void Sprawdz_konsultanta()
+        {
+
+
+            konsult.InnerHtml = "Offline!";
+
+
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
+            Sprawdz_konsultanta();
             linki_admin.Visible = false;
             if (Session.Count > 0 && Session["login"].ToString() != null)
             {

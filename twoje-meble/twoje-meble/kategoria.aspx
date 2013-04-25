@@ -11,13 +11,13 @@
         <asp:DataList ID="DataList1" runat="server" DataKeyField="produktID" 
             DataSourceID="SqlDataSource1" RepeatColumns="5" CellPadding="4" 
             ForeColor="#333333" HorizontalAlign="Center"  CellSpacing="16">
-            <AlternatingItemStyle BackColor="Black" />
+            <AlternatingItemStyle />
             <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
             <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-            <ItemStyle BackColor="Black" BorderColor="Black" />
+            <ItemStyle  BorderColor="Black" />
             <ItemTemplate>
                <a class='produkt_link' href='<%# "/produkt/" + Eval("produktID") %>'>
-            <div class='produkty-lista' style='width:230px;height:100px;position:relative;'>
+            <div class='produkty-lista' style='width:230px;height:160px;position:relative;'>
             <!---\zdjecia\produkty\--->
             <div style='margin:auto;width:105px;min-height:105px;max-height:105px;text-align:center;top:5px;'>
             <asp:Image ID="Image1" runat="server" style='max-height:100px;max-width:100px;' ImageUrl='<%# "zdjecia/produkty/"+Eval("nazwa")+Eval("produktID")+".jpg" %>' />

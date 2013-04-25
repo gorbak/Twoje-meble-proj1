@@ -5,6 +5,7 @@
 
     <div class=zawartosc>
     <div class=formularz>
+        <label>Rejestracja</label>
     <br />
 <table style="height: 0px; width: 100%;">
 <tr>

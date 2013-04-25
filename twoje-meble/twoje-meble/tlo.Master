@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <link href="style/styl_1.css" rel="stylesheet" type="text/css" />
-    <title></title>
+    <title>Twoje-Meble</title>
 
         <style type="text/css">
      
@@ -15,8 +15,9 @@
     &nbsp;&nbsp;&nbsp;
 
     <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
 
+    </asp:ContentPlaceHolder>
+   
 </head>
 <body>
 
@@ -32,20 +33,21 @@
     <ul>
     <li>Witaj,<a runat=server id=link_mojekonto href="/moje.aspx"><label runat=server id=login_usera></label></a>(<a runat=server id=A1 href="/wyloguj.aspx">Wyloguj</a>)
        <a href="/rezerwuj">Rezerwuj</a>
-
+      
     </li>
-
+           <div runat=server id=linki_admin  style='display:inline;'><li><a runat=server id=A3 href="/admin/">Administracja</a></li>
+          </div>
     </ul>
     </div>
-      
+
+
        <div class="menu_glowne">
              
         <ul>
 
            <div runat=server id=linki_logowanie class="linki_l">
             <li class='pierwszy'><a href="/rejestracja.aspx">Zarejestruj się</a></li><!---<li><a href="/promocje.aspx">promocje</a></li><li><a href="/produkty.aspx">produkty</a></li>--->
-          <div runat=server id=linki_admin  style='display:inline;'><li><a runat=server id=A3 href="/administracja.aspx">administracja</a></li>
-          </div>
+ 
             <li><a href="/logowanie.aspx">Moje Konto</a></li>       
             <li><a href="/rezerwuj">Rezerwuj</a></li>
             <li><a href="/logowanie.aspx">Zaloguj</a></li>
@@ -99,7 +101,7 @@
                  <li>
             <div id=konsultant>
             <h1>Konsultant</h1>
-            jest <span class="konsultant_off"></span>
+            jest <span runat='server' id="konsult" class="konsultant_off"></span>
             <br /><br />
             <a href='/konsultant/'><span style='font-size:14px;'>Napisz wiadomość</span><span style='color:#ff7700;font-weight:bold;'>»</span></a>
             

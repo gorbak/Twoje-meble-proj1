@@ -60,7 +60,7 @@ namespace komp
                         Session["Imie"] = rd.GetValue(1);
                         Session["Nazwisko"] = rd.GetValue(2);
                         Session["mail"] = rd.GetValue(3);
-                        Session["uprawnienia"] = rd.GetValue(6);
+                        Session["uprawnienia"] = rd.GetValue(7);
                         Session["koszyk_ile"] = 0;
 
                         Session.Timeout = 60;

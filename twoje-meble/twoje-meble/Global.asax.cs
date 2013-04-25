@@ -34,6 +34,12 @@ namespace komp
             routes.MapPageRoute("",
             "rezerwuj/",
             "~/rezerwuj.aspx");
+            routes.MapPageRoute("",
+            "admin/",
+            "~/administracja.aspx");
+            routes.MapPageRoute("",
+            "admin/{menu_admin}",
+            "~/administracja.aspx");
         }
         protected void Session_Start(object sender, EventArgs e)
         {
