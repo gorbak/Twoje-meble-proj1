@@ -56,6 +56,7 @@ namespace komp
                  bledy.Add("Uzytkownik o loginie " + login2 + " juz istnieje!");
                  Login_text.Style["color"] = "red";
 
+
              }
 
             /*

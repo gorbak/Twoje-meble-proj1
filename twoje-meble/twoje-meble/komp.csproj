@@ -193,7 +193,7 @@
     <Compile Include="rezerwuj.aspx.designer.cs">
       <DependentUpon>rezerwuj.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Sqlconnection.cs" />
+    <Compile Include="Sprawdz_magazyn.cs" />
     <Compile Include="szukaj.aspx.cs">
       <DependentUpon>szukaj.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

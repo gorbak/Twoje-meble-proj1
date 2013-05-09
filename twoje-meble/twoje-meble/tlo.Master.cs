@@ -9,13 +9,16 @@ namespace komp
 {
     public partial class tlo : System.Web.UI.MasterPage
     {
+        public void karaczan()
+        {
 
+        }
         protected void Sprawdz_konsultanta()
         {
 
 
             konsult.InnerHtml = "Offline!";
-
+            ile_rezerwacja.Visible = false;
 
         }
         protected void Page_Load(object sender, EventArgs e)
@@ -33,7 +36,7 @@ namespace komp
                 linki_user.Visible = false;
                 linki_admin.Visible = false;
                 linki_logowanie.Visible = true;
-
+                
             }
             if (Session.Count > 0 && Session["koszyk_ile"].ToString() != null)
             {

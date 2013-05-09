@@ -13,6 +13,24 @@ namespace komp {
     public partial class rejestracja {
         
         /// <summary>
+        /// div_bledy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_bledy;
+        
+        /// <summary>
+        /// Label1_b control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1_b;
+        
+        /// <summary>
         /// Login_text control.
         /// </summary>
         /// <remarks>
@@ -128,24 +146,6 @@ namespace komp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button rejestruj;
-        
-        /// <summary>
-        /// div_bledy control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_bledy;
-        
-        /// <summary>
-        /// Label1_b control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1_b;
         
         /// <summary>
         /// SqlDataSource1 control.

@@ -37,6 +37,7 @@ namespace komp
             {
 
                 List<String> produkty = new List<String>();
+                List<String> ilosc_p = new List<String>();
 
                 SqlConnection kosz_con;
                 SqlCommand kosz_cmd_Sel, kosz_cmd_Sel2;
@@ -59,6 +60,8 @@ namespace komp
 
 
                         produkty.Add(""+rd.GetValue(2));
+                        ilosc_p.Add(""+rd.GetValue(3));
+
 
                     }
                 }
@@ -66,9 +69,11 @@ namespace komp
                 kosz_con.Close();
                 //////////////////////////////////
                 int cena = 0;
+                int lp;
                 zawartosc_koszyka.InnerHtml = "";
                 for (int z = 0; z < produkty.Count; z++)
                 {
+                    lp = z+1;
                     kosz_con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString);
                     kosz_con.Open();
                     kosz_cmd_Sel = new SqlCommand("Select * from produkty where produktID = '" + produkty[z] + "'");
@@ -84,17 +89,23 @@ namespace komp
                         {
 
 
-                            zawartosc_koszyka.InnerHtml += "<div style='width:120px;background:#fc6;margin:4px;padding:3px;'>nazwa: " + rd.GetValue(1) + "<br />"
-                            + "model: " + rd.GetValue(6) + "<br />"
-                            + "cena: " + rd.GetValue(4) + " ZŁ</div>";
-                            cena += int.Parse(Convert.ToString(rd.GetValue(4)));
+                            zawartosc_koszyka.InnerHtml += "<div class='koszyk_produkt' style=''><div>"+ lp + "</div><div> " + rd.GetValue(1) + "</div> "
+                            + "<div> " + rd.GetValue(6) + "</div>"
+                            + "<div> " + rd.GetValue(4) + " ZŁ</div>";
+
+                            cena += int.Parse(Convert.ToString(rd.GetValue(4))) * int.Parse(ilosc_p[z].ToString());
                         }
                     }
 
                     kosz_con.Close();
+                    zawartosc_koszyka.InnerHtml += "<div>" + ilosc_p[z] + "</div></div>";
                 }
 
                 Div11111.InnerHtml = "Łączna cena: " + cena + " ZŁ <br />";
+                Div11111.Style["text-align"] = "right";
+                Div11111.Style["padding-right"] = "10px";
+                Div11111.Style["border-bottom"] = "2px solid gray";
+                Div11111.Style["margin-bottom"] = "5px";
                 div2222.Visible = true;
             }
         }

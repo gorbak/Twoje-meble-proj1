@@ -12,14 +12,29 @@ namespace komp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
+            Sprawdz_magazyn.sprawdz();
+            if (Page.RouteData.Values["produkt"] == null) { Response.Redirect("/"); }
 
 
         }
         protected void Koszyk_dodaj_Click(object sender, EventArgs e)
         {
+            int ilosc = 0;
             int koszyk_ile = 0;
+
+            Button btn = sender as Button;
+            DataListItem item = btn.NamingContainer as DataListItem;
+            TextBox il = item.FindControl("input_bialy_ilosc") as TextBox;
+            try
+            {
+                int.Parse(il.Text);
+            }
+            catch
+            {
+                il.Text = "1";
+            }
+
+
             if (Session.Count > 0 && Session["koszyk_ile"].ToString() != null)
             {
                 koszyk_ile = int.Parse(Session["koszyk_ile"].ToString());
@@ -31,25 +46,57 @@ namespace komp
                 Session["koszyk_ile"] = koszyk_ile;
                 //
 
-                Button btn = sender as Button;
-                DataListItem item = btn.NamingContainer as DataListItem;
+
+
+
                 Label lab = item.FindControl("produktIDLabel") as Label;
+                
+                
 
-                SqlConnection kosz_con;
-                SqlCommand kosz_cmd_insert;
-                kosz_con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString);
-                kosz_con.Open();
-                kosz_cmd_insert = new SqlCommand("INSERT INTO Koszyk"
-                    + "  (userID,produktID)"
-                    + "VALUES "
-                    + "  ('" + Convert.ToInt32(Session["userID"].ToString()) + "','" + lab.Text + "')");
+                SqlConnection kosz_con,mag_con;
+                SqlCommand kosz_cmd_insert,mag_cmd_sel;
+                SqlDataReader czyt_mag;
+                mag_con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString);
+                mag_con.Open();
+                mag_cmd_sel = new SqlCommand("SELECT ilosc FROM Stan_Magazynu "
+                    + "WHERE ID_Magazynu = '" + Page.RouteData.Values["produkt"] + "'");
 
+                mag_cmd_sel.Connection = mag_con;
+                czyt_mag = mag_cmd_sel.ExecuteReader();
 
-                kosz_cmd_insert.Connection = kosz_con;
-                kosz_cmd_insert.ExecuteNonQuery();
-                kosz_con.Close();
+                if (czyt_mag.HasRows)
+                {
+                    while (czyt_mag.Read())
+                    {
 
-                //
+                        ilosc = int.Parse(czyt_mag.GetValue(0).ToString());
+                    }
+                }
+
+                mag_con.Close();
+
+                if(ilosc < 1){  // zabezpiecza przed tak zwanym "wyścigiem" kiedy ktoś już wykupi dany produkt z magazynu
+
+                    Response.Redirect("/produkt/" + Page.RouteData.Values["produkt"]);
+
+                    }else{
+
+                        int ile_dodac = int.Parse(il.Text.ToString());
+
+                        if (ile_dodac > ilosc) { ile_dodac = ilosc; }
+                    kosz_con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString);
+                    kosz_con.Open();
+                    kosz_cmd_insert = new SqlCommand("INSERT INTO Koszyk"
+                        + "  (userID,produktID,ilosc)"
+                        + "VALUES "
+                        + "  ('" + Convert.ToInt32(Session["userID"].ToString()) + "','" + lab.Text + "','" + ile_dodac + "')");
+
+    
+                    kosz_cmd_insert.Connection = kosz_con;
+                    kosz_cmd_insert.ExecuteNonQuery();
+                    kosz_con.Close();
+                    }
+                
 
 
             }

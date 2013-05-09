@@ -13,7 +13,7 @@ namespace komp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            div_bledy.Style["display"] = "none";
         }
 
         protected void Zaloguj_Click(object sender, EventArgs e)

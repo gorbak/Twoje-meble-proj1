@@ -4,6 +4,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class=zawartosc>
+        <div runat=server id=div_bledy class="bledy">
+        <asp:Label ID="Label1_b" runat="server" Text=""></asp:Label></div>
     <div class=formularz>
         <label>Rejestracja</label>
     <br />
@@ -69,8 +71,7 @@
 
 </table>
     </div>
-    <div runat=server id=div_bledy class="bledy">
-        <asp:Label ID="Label1_b" runat="server" Text=""></asp:Label></div>
+
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
         ConnectionString="<%$ ConnectionStrings:CS %>" 
         SelectCommand="SELECT * FROM [produkty]"></asp:SqlDataSource>

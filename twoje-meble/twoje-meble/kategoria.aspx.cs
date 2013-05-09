@@ -17,7 +17,7 @@ namespace komp
             SqlConnection katxx_con;
             SqlCommand katxx_cmd_Sel;
             SqlDataReader rdkatxx;
-
+            
 
             katxx_con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString);
             katxx_con.Open();

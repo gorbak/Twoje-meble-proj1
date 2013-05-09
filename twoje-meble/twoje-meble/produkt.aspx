@@ -4,7 +4,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <script type="text/javascript"  src="/jquery-2.0.0.min.js"></script>
-<script type="text/javascript"  src="/ilosc_znakow.js"></script>
 <script type="text/javascript"  src="/limit.js"></script>
    <div class=zawartosc>
         <div class='produkty'>
@@ -25,15 +24,15 @@
            
                 
 
-                <asp:Label ID="nazwaLabel" runat="server" Text='<%# Eval("nazwa") %>' />
+                <asp:Label ID="nazwaLabel" runat="server" class='naglowek_produktu' Text='<%# Eval("nazwa") %>' />
                 &nbsp;
                <asp:Label ID="modelLabel" runat="server" Text='<%# Eval("model") %>'></asp:Label>
                 <br />
                             <!---\zdjecia\produkty\--->
-            <div style='float:left;width:105px;height:100px;max-height:100px;text-align:center;' >
+            <div style='float:left;width:105px;height:100px;max-height:100px;text-align:center;margin-top:10px;' >
             <asp:Image ID="Image1" runat="server" style='max-height:100px;max-width:100px;' ImageUrl='<%# "zdjecia/produkty/"+Eval("nazwa")+Eval("produktID")+".jpg" %>' />
             </div>
-              <asp:Label ID="Label2" runat="server"  Text='<%#  Convert.ToBoolean(Eval("dostepnosc")) ? "" : "brak produktu"%>' />
+             
                  <br /><br /><br /><br /><br /><br />
                  Opis Produktu:
                  <br />
@@ -46,11 +45,15 @@
                  Cena: 
                  <asp:Label ID="cenaLabel" runat="server" class='cena big' style='font-weight:normal;' Text='<%# Eval("cena") + " zł"%>' /></div>
                 <br />
-                <div style='border-top:1px dashed #bbb;position:Absolute;top:40px;right:0px;padding-top:10px;'>
-                 <input id="input_bialy_ilosc" class='input_bialy' type="text" style='padding:10px;padding-top:5px;padding-bottom:5px;width:28px;text-align:center;' value="1"/> <div style='position:absolute;top:40px;' class="plus_minus_przyciski"><input type='button' ID="przycisk_minus"  value=" "  class='plus_minus minus'/><input type='button' ID="przycisk_plus" value=" "   class='plus_minus'/></div>
+                <div id="Div1" runat=server style='width:150px;text-align:right;border-top:1px dashed #bbb;position:Absolute;top:40px;right:0px;padding-top:10px;color:#f70;' visible='<%# Convert.ToBoolean(Eval("dostepnosc")) ? false : true %>'>
+                <asp:Label ID="Label3" runat="server"  Text='<%#  Convert.ToBoolean(Eval("dostepnosc")) ? "" : "brak produktu"%>' />
+                </div>
+                <div runat=server style='border-top:1px dashed #bbb;position:Absolute;top:40px;right:0px;padding-top:10px;' visible='<%# Convert.ToBoolean(Eval("dostepnosc")) %>'>
+
+                 <asp:TextBox runat='server' ID="input_bialy_ilosc" class='input_bialy input_b_i' type="text" style='padding:10px;padding-top:5px;padding-bottom:5px;width:28px;text-align:center;' value="1" ValidationGroup="g1" /> <div style='position:absolute;top:40px;' class="plus_minus_przyciski"><input type='button' ID="przycisk_minus"  value=" "  class='plus_minus minus'/><input type='button' ID="przycisk_plus" value=" "   class='plus_minus'/></div>
                 <asp:Button ID="Koszyk_dodaj" runat="server" class=koszyk_dodaj
                      Text=" " visible='<%# Convert.ToBoolean(Eval("dostepnosc")) %>'
-                    onclick="Koszyk_dodaj_Click" />
+                    onclick="Koszyk_dodaj_Click" /> <asp:Label ID="Label2" runat="server"  Text='<%#  Convert.ToBoolean(Eval("dostepnosc")) ? "" : "brak produktu"%>' />
                     </div>
                 </div> 
               </div>
@@ -70,37 +73,38 @@
             <script type="text/javascript">
 
                 $("#przycisk_minus").click(function () {
-                    var ile = $('#input_bialy_ilosc').val() - 1;
+                    var ile = $('.input_b_i').val() - 1;
                     if (ile < 1) { ile = 1 }
-                    $('#input_bialy_ilosc').attr('value', ile);
+                    $('.input_b_i').attr('value', ile);
                 });
 
         $("#przycisk_plus").click(function () {
-            var ile = $('#input_bialy_ilosc').val();
+            var ile = $('.input_b_i').val();
             ile++;
             if (ile > 9999) { ile = 9999 }
-            $('#input_bialy_ilosc').attr('value', ile);
+            $('.input_b_i').attr('value', ile);
         });
 
-                $('#input_bialy_ilosc').focus(
+        $('.input_b_i').focus(
     function () {
         $(this).attr('value', '');
     });
 
-    $('#input_bialy_ilosc').blur(
+    $('.input_b_i').blur(
     function () {
-        var wartosc = $('#input_bialy_ilosc').val()
+        var wartosc = $('.input_b_i').val()
         if (wartosc == '') {
             $(this).attr('value', '1');
         } else {
             $(this).attr('value', wartosc);
         }
     });
-  
-         
-                if ($('#input_bialy_ilosc').attr("value") == 1) { }
-                $('#input_bialy_ilosc').limit('4');
+
+             if ($('.input_b_i').attr("value") == 1) { }
+                   $('.input_b_i').limit('4');
              </script>
     </div>
     </div>
+
+   
 </asp:Content>

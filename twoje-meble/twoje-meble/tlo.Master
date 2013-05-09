@@ -32,7 +32,7 @@
     <div runat=server id=linki_user class='linki_usera'>
     <ul>
     <li>Witaj,<a runat=server id=link_mojekonto href="/moje.aspx"><label runat=server id=login_usera></label></a>(<a runat=server id=A1 href="/wyloguj.aspx">Wyloguj</a>)
-       <a href="/rezerwuj">Rezerwuj</a>
+       <a href="/rezerwuj" class='rezerwuj'><div></div>Rezerwuj<span id=ile_rezerwacja runat=server ></span></a>
       
     </li>
            <div runat=server id=linki_admin  style='display:inline;'><li><a runat=server id=A3 href="/admin/">Administracja</a></li>
@@ -117,6 +117,12 @@
 
         </asp:ContentPlaceHolder>
     </form>
+   </div>
+
+   <div id=ostrzezenie runat='server' class='niewidok'>
+  <!--- <div class=aabbcc>NAGŁÓWEK</div>--->
+  Błąd krytyczny
+  <div class=okay><input type=button value='OK' /></div>
    </div>
 </body>
 </html>
