@@ -295,5 +295,25 @@ namespace komp
             DataList_produkty.EditItemIndex = -1;
             DataList_produkty.DataBind();
         }
+        protected void DataList_produkty_DeleteCommand(object source, DataListCommandEventArgs e)
+        {
+            SqlConnection con;
+            SqlCommand coman = new SqlCommand();
+            con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString);
+
+            int Produkt_ID = (int)DataList_produkty.DataKeys[(int)e.Item.ItemIndex];
+
+            coman.Connection = con;
+            coman.CommandText = "Delete from produkty where produktID=" + Produkt_ID;
+
+            coman.Connection.Open();
+
+            coman.ExecuteNonQuery();
+
+            coman.Connection.Close();
+
+            DataList_produkty.EditItemIndex = -1;
+            DataList_produkty.DataBind();
+        }
     }
 }

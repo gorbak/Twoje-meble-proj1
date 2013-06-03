@@ -9,7 +9,7 @@
         <div class='produkty'>
         <div class=label><label id="Labelglowny" runat=server></label></div>
         <asp:DataList ID="DataList1" runat="server" DataKeyField="produktID" 
-            DataSourceID="SqlDataSource1" RepeatColumns="5" CellPadding="4" 
+            DataSourceID="SqlDataSource1" RepeatColumns="3" CellPadding="4" 
             ForeColor="#333333" HorizontalAlign="Center"  CellSpacing="16">
             <AlternatingItemStyle />
             <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />

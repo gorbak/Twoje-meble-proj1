@@ -18,7 +18,7 @@ namespace komp
 
 
             konsult.InnerHtml = "Offline!";
-            ile_rezerwacja.Visible = false;
+         //   ile_rezerwacja.Visible = false;
 
         }
         protected void Page_Load(object sender, EventArgs e)

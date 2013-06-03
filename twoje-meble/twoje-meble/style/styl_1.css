@@ -864,7 +864,9 @@ padding-right:12px !important;
 }
 .niewidok
 {
- opacity:0;   
+ opacity:0;
+ position:absolute;
+ display:none;   
 }
 .ostrzezenie_on
 {

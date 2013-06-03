@@ -124,10 +124,12 @@ WHERE produktID = @produktID">
                  <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                <div id=produkt_admin_lista runat='server' class='magazyn_admin'>
-             <asp:DataList ID="DataList_produkty" runat="server" DataSourceID="SqlDataSource_produkty" 
+           <asp:DataList ID="DataList_produkty" runat="server" DataSourceID="SqlDataSource_produkty" 
                  RepeatColumns="3" DataKeyField="ProduktID" 
                  oneditcommand="DS_Produkty_EditCommand" 
-                 onupdatecommand="DS_Produkty_UpdateCommand" RepeatDirection="Horizontal">
+                 onupdatecommand="DS_Produkty_UpdateCommand" RepeatDirection="Horizontal" 
+                       RepeatLayout="Table" ItemStyle-VerticalAlign="Top" 
+                       ondeletecommand="DataList_produkty_DeleteCommand">
                  <EditItemTemplate>
                     <div id="dodaj_przedmiot" style="font-size:16px;border:2px solid #ff7700;margin:5px;border-radius:10px 0;width:200px; position:relative;" class='magazyn edytowany_magazyn'>
                      ProduktID:
@@ -149,10 +151,11 @@ WHERE produktID = @produktID">
                  </EditItemTemplate>
                  <ItemTemplate>
 
-                 <div class='a_naglowek' style='position:relative;text-align:left !important;'><asp:Label ID="ProduktIDLabel" runat="server" class="label_opis_Admin tytul"  style='margin-left:6px;' Text='<%# Eval("ProduktID") %>' /><div ID="Label3" runat="server" class="label_opis_Admin tytul"  style='position:absolute;top:3px;margin:auto;margin-left:33%;width:60px !important;text-align:center;border-radius:40px 40px 0 0;' ><%# Eval("nazwa_kategorii") %></div><asp:Label ID="Label1" runat="server" class="label_opis_Admin tytul usun"  style='position:absolute;right:2px;top:0px;margin:3px;border-radius:0 20px;' Text='X' /><br /></div>
+                 <div class='a_naglowek' style='position:relative;text-align:left !important;'><asp:Label ID="ProduktIDLabel" runat="server" class="label_opis_Admin tytul"  style='margin-left:6px;' Text='<%# Eval("ProduktID") %>' /><div ID="Label3" runat="server" class="label_opis_Admin tytul"  style='position:absolute;top:3px;margin:auto;margin-left:33%;width:60px !important;text-align:center;border-radius:40px 40px 0 0;' ><%# Eval("nazwa_kategorii") %></div> <asp:Button
+                         ID="Button1" runat="server" Text="X" class="label_opis_Admin tytul usun"  style='position:absolute;right:2px;top:0px;margin:3px;border-radius:0 20px;width:34px;height:25px;padding-right:7px;' CommandName="delete" /><br /></div>
                   <div id="przedmiot" style="font-size:16px;border:2px solid #ff7700;margin:5px;margin-bottom:30px !important;border-radius:10px 0;width:200px; position:relative;" class='magazyn'>
                   
-                 <div style='float:left;height:50px;width:50px;overflow:hidden;'> <asp:Image ID="Image1" runat="server" style='max-height:50px;max-width:50px;' ImageUrl='<%# "zdjecia/produkty/"+Eval("nazwa")+Eval("produktID")+".jpg" %>' /></div>
+                 <div style='float:left;height:50px;width:50px;overflow:hidden;padding-right:5px;'> <asp:Image ID="Image1" runat="server" style='max-height:50px;max-width:50px;' ImageUrl='<%# "zdjecia/produkty/"+Eval("nazwa")+Eval("produktID")+".jpg" %>' /></div>
         
                      <asp:Label ID="nazwaLabel" runat="server" Text='<%# Eval("nazwa") %>' />
                      <br />
@@ -198,7 +201,7 @@ WHERE p.KategoriaID = k.KategoriaID"
           <div class='a_naglowek'><label runat='server' id="label_dodaj_prod" class="label_opis_Admin tytul" style='margin-left:-148px;'>Dodawanie produktu</label><br /></div>
        <div style='width:100%;top:4px;position:relative;'> 
          <div id="dodaj_przedmiot" style="border:2px solid #ff7700;border-radius:10px 0;width:300px;height:215px; position:relative;">
-            <div class='mini_obraz' id=podglad style="float:left;width:100px;height:100px;overflow:hidden;">
+            <div class='mini_obraz' id=podglad style="float:left;width:100px;height:100px;overflow:hidden; font-size:16px;">
           
             <label id=obraz_admin_up>Brak Obrazu </label>
     <asp:FileUpload ID="FileUploadmin" runat="server" name="plik2" type="file" CssClass='upload_admin' onchange="czytajurl(this);"/>

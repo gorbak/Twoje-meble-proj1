@@ -32,7 +32,7 @@
     <div runat=server id=linki_user class='linki_usera'>
     <ul>
     <li>Witaj,<a runat=server id=link_mojekonto href="/moje.aspx"><label runat=server id=login_usera></label></a>(<a runat=server id=A1 href="/wyloguj.aspx">Wyloguj</a>)
-       <a href="/rezerwuj" class='rezerwuj'><div></div>Rezerwuj<span id=ile_rezerwacja runat=server ></span></a>
+    
       
     </li>
            <div runat=server id=linki_admin  style='display:inline;'><li><a runat=server id=A3 href="/admin/">Administracja</a></li>
@@ -48,8 +48,6 @@
            <div runat=server id=linki_logowanie class="linki_l">
             <li class='pierwszy'><a href="/rejestracja.aspx">Zarejestruj się</a></li><!---<li><a href="/promocje.aspx">promocje</a></li><li><a href="/produkty.aspx">produkty</a></li>--->
  
-            <li><a href="/logowanie.aspx">Moje Konto</a></li>       
-            <li><a href="/rezerwuj">Rezerwuj</a></li>
             <li><a href="/logowanie.aspx">Zaloguj</a></li>
           </div>
 

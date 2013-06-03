@@ -31,8 +31,8 @@
                <asp:Label ID="modelLabel" runat="server" Text='<%# Eval("model") %>'></asp:Label>
              
                      <div style='top:12px;float:right;padding-right:18px;'>
-                 <asp:Label ID="cenaLabel" runat="server" class='cena' Text='<%# Eval("cena") + " zł"%>' /></div>
-
+                 <asp:Label ID="cenaLabel" runat="server" class='cena' Text='<%# Eval("cena") + " zł"%>' style='position:relative;' /></div>
+                
 
                 </div> 
                 <br />
